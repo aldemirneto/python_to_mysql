@@ -106,6 +106,7 @@ def acessaBanco(engine, filtrado):
 
 
 if __name__ == '__main__':
+        util.createDB()
         dados = requisitaJSON()
         filtrado = filtraJSON(dados)
         conexao = util.conectaBD()
