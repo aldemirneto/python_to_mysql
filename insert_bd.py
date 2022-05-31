@@ -1,7 +1,7 @@
 import configparser
 from distutils.command.config import config
 from select import select
-import sqlalchemy, util, requests, json, string
+import sqlalchemy, util, requests, json, string, environment
 import pandas as pd
 from datetime import datetime, date
 from dateutil import relativedelta
@@ -84,13 +84,7 @@ def populaTabelaPlano(engine, var):
     return 'success!'
     
 
-
-
-
-
-
-def acessaBanco(engine, filtrado):
-    
+def insertClient(engine, filtrado):
     with engine.connect() as conn:
         for pessoa in filtrado:
             ultimo = pessoa['ultimo'].replace("'", "")
@@ -106,11 +100,11 @@ def acessaBanco(engine, filtrado):
 
 
 if __name__ == '__main__':
-        util.createDB()
+        environment.createDB()
         dados = requisitaJSON()
         filtrado = filtraJSON(dados)
-        conexao = util.conectaBD()
-        acessaBanco(conexao, filtrado)
+        conexao = environment.conectaBD()
+        insertClient(conexao, filtrado)
         z = variaveisTabelaPlano(conexao)
         populaTabelaPlano(conexao, z)
 
