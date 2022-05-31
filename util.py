@@ -90,9 +90,7 @@ def createDB():
         `idcliente` int NOT NULL,
         `InicioPlano` date NOT NULL,
         `UltimoPagamento` date NOT NULL,
-        PRIMARY KEY (`idplano`),
-        KEY `idcliente` (`idcliente`),
-        CONSTRAINT `plano_ibfk_1` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`IdCliente`) ON DELETE CASCADE
+        PRIMARY KEY (`idplano`)
         ) """
         ))
         conn.close()
